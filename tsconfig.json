@@ -1,22 +1,33 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    //目标代码；将我们的ts代码编译转化成es5还是es6/es7...，esnext是es6的意思
+    //为什么我们转化成es6？明明有浏览器不支持es6！
+    //因为我们最终的编译还是通过babel来转化的，babel会根据.browerslistrc文件将代码转化为能让浏览器识别的代码，所以ts的编译仅仅是将ts转化为es，至于是es几无所谓，因为还有babel会将高级es转化为es5或其他浏览器可以识别的版本；
+    "target": "esnext", //写es5也行
     "module": "esnext",
     "strict": true,
+    //对jsx代码做什么处理？
+    //preserver表示不处理，因为babel会自动进行处理；
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
+    //让ts跳过对第三方库的类型检测；有些类型都用不到，没必要ts把第三方库的类型都检测一遍，我们用到的导入进来，让后让ts检测即可；
     "skipLibCheck": true,
+    //下面两个一起使用，它们的意思是export default和module.exports{}能否在这个项目中一起使用；即es moudule和commosjs能否一起使用；
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    //使用sourcemap生成映射文件；（将ts-》js）
     "sourceMap": true,
     "baseUrl": ".",
     "types": ["webpack-env"],
+    //路径解析，类似webpack的alias
     "paths": {
       "@/*": ["src/*"]
     },
+    //可以引用第三库的类型
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  //include表示那些文件需要做解析编译
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -24,5 +35,6 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  //exclude表示哪些文件需要被排除解析
   "exclude": ["node_modules"]
 }

@@ -7,3 +7,6 @@
 **/*.sh
 
 /public/*
+
+README.md
+README_schedule.md
